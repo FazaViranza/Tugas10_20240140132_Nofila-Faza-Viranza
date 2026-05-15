@@ -2,7 +2,15 @@ import { useState } from "react";
 import products from "../data/products";
 
 function Catalog({ setIsLogin }) {
-  const [selectedCar, setSelectedCar] = useState(products[0]);
+
+  const [selectedCar, setSelectedCar] =
+    useState(products[0]);
+
+  const [category, setCategory] =
+    useState("Supercar");
+
+  const [date, setDate] =
+    useState("");
 
   return (
     <div className="catalog-page">
@@ -12,6 +20,7 @@ function Catalog({ setIsLogin }) {
       <div className="sidebar">
 
         <div>
+
           <h2 className="logo">Ferrari</h2>
 
           <p className="menu-title">
@@ -19,6 +28,7 @@ function Catalog({ setIsLogin }) {
           </p>
 
           <div className="car-list">
+
             {products.map((car) => (
               <div
                 key={car.id}
@@ -32,7 +42,45 @@ function Catalog({ setIsLogin }) {
                 {car.name}
               </div>
             ))}
+
           </div>
+
+          {/* SELECT */}
+
+          <div className="form-section">
+
+            <label>Category</label>
+
+            <select
+              value={category}
+              onChange={(e) =>
+                setCategory(e.target.value)
+              }
+            >
+              <option>Supercar</option>
+              <option>Hypercar</option>
+              <option>GT Racing</option>
+              <option>Luxury</option>
+            </select>
+
+          </div>
+
+          {/* DATE */}
+
+          <div className="form-section">
+
+            <label>Test Drive Date</label>
+
+            <input
+              type="date"
+              value={date}
+              onChange={(e) =>
+                setDate(e.target.value)
+              }
+            />
+
+          </div>
+
         </div>
 
         <button
@@ -60,6 +108,26 @@ function Catalog({ setIsLogin }) {
           <h1>{selectedCar.name}</h1>
 
           <p>{selectedCar.desc}</p>
+
+          {/* DISPLAY SELECT */}
+
+          <div className="info-box">
+
+            <h3>Selected Category</h3>
+            <p>{category}</p>
+
+          </div>
+
+          {/* DISPLAY DATE */}
+
+          <div className="info-box">
+
+            <h3>Test Drive Date</h3>
+            <p>
+              {date || "No date selected"}
+            </p>
+
+          </div>
 
         </div>
 
